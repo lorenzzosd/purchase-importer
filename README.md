@@ -2,8 +2,8 @@
 
 A base importer for purchases
 
-Install mysql
-Install npm
+- install mysql
+- install npm
 
 - run `bundler install`
 - run `bundle`
