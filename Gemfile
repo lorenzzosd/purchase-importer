@@ -58,6 +58,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'rspec-sidekiq'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'database_cleaner', '~> 1.5'
 end
