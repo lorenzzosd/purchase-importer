@@ -1,0 +1,13 @@
+<%= form_for @import_purchase do |f| %>
+  <form>
+    <div class='form-group'>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter your import purchase name ..' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :file %>
+      <%= f.file_field :file, placeholder: 'Enter your file ..' %>
+    </div>
+    <%= f.submit 'New Importatiom', class: 'btn btn-primary', data: { disable_with: 'Wait...' } %>
+  </form>
+<% end %>

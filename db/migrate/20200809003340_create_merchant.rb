@@ -1,0 +1,12 @@
+class CreateMerchant < ActiveRecord::Migration[5.2]
+  def change
+    create_table :merchants do |t|
+      t.string :name
+      t.string :address
+
+      t.index %i[name address]
+
+      t.timestamps
+    end
+  end
+end

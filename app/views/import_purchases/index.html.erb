@@ -1,0 +1,42 @@
+<div class='container-fluid page__heading-container'>
+  <div class='page__heading d-flex align-items-center'>
+    <div class='flex'>
+      <nav aria-label='breadcrumb'>
+        <ol class='breadcrumb mb-0'>
+          <li class='breadcrumb-item' aria-current='page'>Importers</li>
+          <li class='breadcrumb-item active' aria-current='page'>Purchases Imports</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class='container-fluid page__container'>
+  <% if flash.any? %>
+    <% flash.each do |name, msgs| %>
+      <div class="alert alert-<%=name.eql?('error') ? 'danger' : 'success'%>" role="alert">
+        <% if msgs.instance_of? Hash %>
+          <% msgs.each do |field, message| %>
+            <p><%= "#{field.titleize}: #{message.join(', ')}" %></p>
+          <% end %>
+        <% else %>
+          <p><%= msgs %></p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class='card card-form'>
+    <div class='row no-gutters'>
+      <div class='col-lg-4 card-body'>
+        <p><strong class='headings-color'>Purchase Imports</strong></p>
+        <p class='text-muted'>You've received a <a href='https://gitlab.com/nuuvem-public/tests/web-1/-/blob/master/example_input.tab' target='_blank'>text file (tab separated)</a> with data describing the company sales. We need a way for this data to be imported to a database.</p>
+      </div>
+      <div class='col-lg-8 card-form__body card-body'>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'imports_purchase' %>
+</div>

@@ -1,0 +1,70 @@
+<div class='container-fluid page__heading-container'>
+  <div class='page__heading d-flex align-items-center'>
+    <div class='flex'>
+      <nav aria-label='breadcrumb'>
+        <ol class='breadcrumb mb-0'>
+          <li class='breadcrumb-item' aria-current='page'>Importers</li>
+          <li class='breadcrumb-item' aria-current='page'>Purchases Imports</li>
+          <li class='breadcrumb-item active' aria-current='page'>#<%= @import_purchase.id %></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class='container-fluid page__container'>
+  <div class='card card-form'>
+    <div class='row no-gutters'>
+      <div class='col-lg-4 card-body'>
+        <div class='form-group'>
+          <b><label for="import_purchase_name"><%= Import::Purchase.human_attribute_name(:name) %></label></b>
+          <%= @import_purchase.name %>
+        </div>
+
+        <div class='form-group'>
+          <b><label for="import_purchase_state"><%= Import::Purchase.human_attribute_name(:state) %></label></b>
+          <%= @import_purchase.state %>
+        </div>
+
+        <div class='form-group'>
+          <b><label for="import_purchase_executed_on"><%= Import::Purchase.human_attribute_name(:executed_on) %></label></b>
+          <%= @import_purchase.executed_on %>
+        </div>
+
+        <div class='form-group'>
+          <b><label for="import_purchase_total_gross_income">Total gross income</label></b>
+          <%= number_to_currency(@import_purchase.purchases.sum(&:gross_income)) %>
+        </div>
+
+        <div class='form-group'>
+          <b><label for="import_purchase_file"><%=Import::Purchase.human_attribute_name(:file) %></label></b>
+          <%= link_to 'download', url_for(@import_purchase.file) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='card card-form'>
+    <table class='table table-striped table-bordered table-hover' style='margin-bottom: 0;'>
+      <thead class='table-dark bg-dark'>
+        <tr>
+          <th scope='col'>#</th>
+          <th scope='col'><%= Purchase.model_name.human %></th>
+          <th scope='col'><%= Import::PurchaseLine.human_attribute_name(:state) %></th>
+          <th scope='col'><%= Import::PurchaseLine.human_attribute_name(:message) %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @import_purchase.lines.each do |line| %>
+          <tr>
+            <th scope='row'><%= line.id %></th>
+            <td><%= line.purchase_id %></td>
+            <td><%= line.state %></td>
+            <td><%= line.message %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

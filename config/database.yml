@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+  host:  <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
+  database: purchase_importer_dev
+
+production:
+  <<: *default
+  database: purchase_importer
+
+test:
+  <<: *default
+  database: purchase_importer_test
